@@ -6,44 +6,37 @@
 /*   By: etornay- <etornay-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 19:26:32 by etornay-          #+#    #+#             */
-/*   Updated: 2024/08/14 19:19:43 by etornay-         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:19:22 by etornay-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main(void)
 {
-	Bureaucrat *b1 = NULL;
-	Bureaucrat *b2 = NULL;
-	Bureaucrat *b3 = NULL;
-	try
-	{
-		b1 = new Bureaucrat("Elias", 100);
-		b2 = new Bureaucrat("Luna", 1);
-		b3 = new Bureaucrat(*b1);
-		
-		std::cout << "b3 :" << *b3 <<std::endl;
-		*b3 = *b2;
-		std::cout << "b3 :" << *b3 <<std::endl;
-		std::cout << "b1: " << *b1 << "\nb2: " << *b2 << std::endl;
-		
-		b1->decreaseGrade();
-		b2->decreaseGrade();
-		
-		std::cout << "b1: " << *b1 << "\nb2: " << *b2 << std::endl;
-		b1->increaseGrade();
-		b2->increaseGrade();
-		std::cout << "b1: " << *b1 << "\nb2: " << *b2 << std::endl;
-		b2->increaseGrade();
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	delete b1;
-	delete b2;
-	delete b3;
+    try
+    {
+        Bureaucrat b1("Elias", 145);
+        Bureaucrat b2("Luna", 1);
 
-	return (0);
+        Form f1("Form1", 140, 130);
+        Form f2("Form2", 2, 1);
+
+        std::cout << b1 << std::endl;
+        std::cout << b2 << std::endl;
+
+        std::cout << f1 << std::endl;
+        std::cout << f2 << std::endl;
+
+        b1.signForm(f1);
+        b2.signForm(f2);
+        b1.signForm(f2);
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+
+    return (0);
 }
